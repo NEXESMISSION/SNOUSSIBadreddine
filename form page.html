@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de Devis - Dévotion Traduction</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #111;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .font-serif { font-family: 'Merriweather', serif; }
+
+        /* Buttons & Footer */
+        .btn-gradient { background-image: linear-gradient(to right, #b91c1c, #991b1b); }
+        .btn-gradient:hover { background-image: linear-gradient(to left, #b91c1c, #991b1b); }
+        .footer-gradient { background-image: linear-gradient(to right, #991b1b, #540404); }
+
+        /* Custom File Input */
+        input[type="file"]::file-selector-button {
+            background-color: #f3f4f6; border: 1px solid #d1d5db; border-radius: 0.5rem;
+            padding: 0.5rem 1rem; font-weight: 500; color: #374151;
+            cursor: pointer; transition: background-color 0.2s;
+        }
+        input[type="file"]::file-selector-button:hover { background-color: #e5e7eb; }
+
+        /* Spinner Animation */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border-left-color: #b91c1c; /* Red color for the spinner */
+            animation: spin 1s ease infinite;
+            margin: 1.5rem auto 0;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive text sizes */
+        @media (max-width: 640px) {
+          h1, .text-4xl { font-size: 1.5rem !important; }
+          h2, .text-3xl { font-size: 1.25rem !important; }
+          h3, .text-2xl, .text-xl { font-size: 1.1rem !important; }
+          p, .text-lg, .text-md, .text-sm { font-size: 0.95rem !important; }
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Floating Navigation Bar -->
+    <nav class="sticky top-4 mx-4 z-50 p-4 flex justify-between items-center bg-white/80 shadow-lg rounded-2xl border border-gray-100 backdrop-blur-md">
+        <div class="flex-shrink-0">
+            <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Dévotion Traduction Logo" class="h-10"></a>
+        </div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <a href="index.html#a-propos" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">À propos</a>
+            <a href="index.html#services" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Services</a>
+            <a href="index.html#contact" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Contact</a>
+            <a href="devis.html" class="bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-5 rounded-full shadow-lg transition duration-300 ease-in-out text-base">Devis Gratuit</a>
+        </div>
+        <div class="lg:hidden">
+            <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-60 hidden">
+        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-8 transform translate-x-full transition-transform duration-300 ease-in-out">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-800">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="flex flex-col space-y-6 mt-10 text-left">
+                <a href="index.html#a-propos" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">À propos</a>
+                <a href="index.html#services" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Services</a>
+                <a href="index.html#contact" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Contact</a>
+                <a href="devis.html" class="mt-4 inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-6 rounded-full shadow-lg text-center">Devis Gratuit</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <section class="py-16 md:py-24 px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold font-serif text-gray-900 mb-2">Demande de Devis</h1>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Remplissez le formulaire pour recevoir une estimation gratuite et rapide.</p>
+                </div>
+
+                <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+                    <form id="uploadForm" class="space-y-8">
+                        
+                        <div>
+                            <h2 class="text-2xl font-semibold font-serif text-gray-800 mb-6 border-l-4 border-red-700 pl-4">Informations Personnelles</h2>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block mb-2 text-sm font-medium text-gray-700">Statut</label>
+                                    <div class="flex items-center space-x-6">
+                                        <label class="flex items-center"><input type="radio" name="statut" value="Particulier" class="w-4 h-4 text-red-600 focus:ring-red-500" checked> <span class="ml-2">Particulier</span></label>
+                                        <label class="flex items-center"><input type="radio" name="statut" value="Entreprise" class="w-4 h-4 text-red-600 focus:ring-red-500"> <span class="ml-2">Entreprise</span></label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="nom_prenom" class="block mb-2 text-sm font-medium text-gray-700">Nom et Prénom</label>
+                                    <input type="text" id="nom_prenom" name="nom_prenom" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                </div>
+                                <div id="raison_sociale_group" style="display:none;">
+                                    <label for="raison_sociale" class="block mb-2 text-sm font-medium text-gray-700">Raison Sociale (Entreprise)</label>
+                                    <input type="text" id="raison_sociale" name="raison_sociale" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 class="text-2xl font-semibold font-serif text-gray-800 mb-6 border-l-4 border-red-700 pl-4">Détails des Documents</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="sujet_traduction" class="block mb-2 text-sm font-medium text-gray-700">Objet de la Traduction</label>
+                                    <input type="text" id="sujet_traduction" name="sujet_traduction" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                </div>
+                                <div>
+                                    <label for="pays_destination" class="block mb-2 text-sm font-medium text-gray-700">Pays de Destination</label>
+                                    <input type="text" id="pays_destination" name="pays_destination" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                </div>
+                                <div>
+                                    <label for="langue_source" class="block mb-2 text-sm font-medium text-gray-700">Langue Source</label>
+                                    <select id="langue_source" name="langue_source" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                        <option>Arabe</option><option>Français</option><option>Anglais</option><option>Italien</option><option>Allemand</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="langue_cible" class="block mb-2 text-sm font-medium text-gray-700">Langue Cible</label>
+                                    <select id="langue_cible" name="langue_cible" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                        <option>Arabe</option><option>Français</option><option>Anglais</option><option>Italien</option><option>Allemand</option>
+                                    </select>
+                                </div>
+                                <div class="md:col-span-2">
+                                     <label for="file" class="block mb-2 text-sm font-medium text-gray-700">Télécharger le document</label>
+                                     <input type="file" id="file" name="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" required>
+                                     <p class="mt-1 text-xs text-gray-500">Formats acceptés : Word, PDF, Image, PowerPoint, Excel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 class="text-2xl font-semibold font-serif text-gray-800 mb-4 border-l-4 border-red-700 pl-4">Services Complémentaires</h2>
+                            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                                <div class="flex items-center">
+                                    <input id="service_apostille" name="service_apostille" type="checkbox" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500">
+                                    <label for="service_apostille" class="ml-2 text-sm font-medium text-gray-700">Apostille</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="service_certification" name="service_certification" type="checkbox" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500">
+                                    <label for="service_certification" class="ml-2 text-sm font-medium text-gray-700">Légalisation / Certification</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                             <label for="remarques" class="block mb-2 text-sm font-medium text-gray-700">Remarques</label>
+                             <textarea id="remarques" name="remarques" rows="4" maxlength="1200" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500"></textarea>
+                             <p class="mt-1 text-xs text-gray-500">200 mots maximum.</p>
+                        </div>
+
+                        <div class="text-center pt-4">
+                            <button type="submit" id="submitButton" class="btn-gradient text-white font-medium py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                                Envoyer la demande
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Spinner and Status Message Area -->
+                    <div class="spinner" id="spinner" style="display:none;"></div>
+                    <div id="statusMessage" class="mt-6 text-center font-medium"></div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-gradient text-white py-10 md:py-14" id="contact">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between md:space-x-8 space-y-8 md:space-y-0">
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="mb-4 bg-white rounded-xl p-3 shadow flex items-center justify-center w-fit mx-auto md:mx-0">
+                <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Logo de Dévotion Traduction" class="h-12 w-auto"></a>
+            </div>
+            <div class="space-y-2">
+              <p class="text-base font-semibold">SNOUSSI Badreddine</p>
+              <p class="text-sm">Interprète assermenté</p>
+              <p class="text-sm">Résidence ASSALA 2 « Rihab »<br>D3 Rdc, N°43 de lac Malarène,<br>1052 les berges du lac 1, Tunis</p>
+              <p class="text-sm">(+216) 71 960 110<br>98 320 193<br>26 750 318</p>
+              <p class="text-sm">snoussibadr@gmail.com</p>
+            </div>
+            <a href="https://goo.gl/maps/JYAkqeUJRkJ2" target="_blank" class="inline-block mt-3 bg-white text-[#991b1b] px-4 py-2 rounded-full font-semibold shadow hover:bg-gray-200 transition">Voir sur Google Maps</a>
+          </div>
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 class="text-lg font-semibold mb-3">Liens utiles</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="index.html" class="text-white hover:text-red-300 transition-colors">Accueil</a></li>
+              <li><a href="index.html#services" class="text-white hover:text-red-300 transition-colors">Services</a></li>
+              <li><a href="devis.html" class="text-white hover:text-red-300 transition-colors">Demande de Devis</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuContent = document.getElementById('mobile-menu-content');
+
+            function openMenu() {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => mobileMenuContent.classList.remove('translate-x-full'), 10);
+            }
+            function closeMenu() {
+                mobileMenuContent.classList.add('translate-x-full');
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+            }
+            menuBtn.addEventListener('click', openMenu);
+            closeMenuBtn.addEventListener('click', closeMenu);
+            mobileMenu.addEventListener('click', (e) => (e.target === mobileMenu) && closeMenu());
+            document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMenu));
+        });
+
+        // Form Submission Logic
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyU3jMSGwPOZEthdbWx_hTwvib0bznWeIXeFbSEDDhDvOLMmyc-0IRGIBPQ8k2lhVk57g/exec";
+        const form = document.getElementById('uploadForm');
+        const submitButton = document.getElementById('submitButton');
+        const spinner = document.getElementById('spinner');
+        const statusMessage = document.getElementById('statusMessage');
+        
+        document.querySelectorAll('input[name="statut"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const raisonSocialeGroup = document.getElementById('raison_sociale_group');
+                const raisonSocialeInput = document.getElementById('raison_sociale');
+                if (this.value === 'Entreprise') {
+                    raisonSocialeGroup.style.display = 'block';
+                    raisonSocialeInput.required = true;
+                } else {
+                    raisonSocialeGroup.style.display = 'none';
+                    raisonSocialeInput.required = false;
+                }
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            spinner.style.display = 'block';
+            submitButton.disabled = true;
+            showStatus('', ''); // Clear previous status
+
+            const file = form.elements['file'].files[0];
+            if (!file) {
+                showStatus('Veuillez sélectionner un fichier à télécharger.', 'error');
+                spinner.style.display = 'none';
+                submitButton.disabled = false;
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = (event) => {
+                const fileData = event.target.result.split(',')[1];
+                const payload = {
+                    fileData: fileData,
+                    fileName: file.name,
+                    mimeType: file.type,
+                    statut: document.querySelector('input[name="statut"]:checked').value,
+                    nom_prenom: document.getElementById('nom_prenom').value,
+                    raison_sociale: document.getElementById('raison_sociale').value,
+                    sujet_traduction: document.getElementById('sujet_traduction').value,
+                    pays_destination: document.getElementById('pays_destination').value,
+                    langue_source: document.getElementById('langue_source').value,
+                    langue_cible: document.getElementById('langue_cible').value,
+                    service_apostille: document.getElementById('service_apostille').checked,
+                    service_certification: document.getElementById('service_certification').checked,
+                    remarques: document.getElementById('remarques').value
+                };
+
+                fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        showStatus('Succès ! Votre demande a été envoyée.', 'success');
+                        form.reset();
+                        document.getElementById('raison_sociale_group').style.display = 'none';
+                    } else {
+                        console.error('Erreur du script :', data.message);
+                        showStatus(`Erreur : ${data.message}`, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur Fetch :', error);
+                    showStatus('Une erreur est survenue. Veuillez réessayer.', 'error');
+                })
+                .finally(() => {
+                    spinner.style.display = 'none';
+                    submitButton.disabled = false;
+                });
+            };
+
+            reader.onerror = (error) => {
+                console.error('Erreur du FileReader :', error);
+                showStatus('Erreur lors de la lecture du fichier.', 'error');
+                spinner.style.display = 'none';
+                submitButton.disabled = false;
+            };
+        });
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'mt-6 text-center font-medium';
+            if (type === 'success') {
+                statusMessage.classList.add('text-green-600');
+            } else if (type === 'error') {
+                statusMessage.classList.add('text-red-600');
+            }
+        }
+    </script>
+    <!-- Floating back button -->
+    <a href="index.html" class="fixed left-4 top-24 z-40 bg-red-700 text-white p-3 rounded-full shadow-lg hover:bg-red-800 transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+    </a>
+</body>
+</html>

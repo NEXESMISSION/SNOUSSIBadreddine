@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dévotion Traduction - Services Juridiques</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: #111;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .font-serif { font-family: 'Merriweather', serif; }
+        .font-display { font-family: 'Playfair Display', serif; }
+
+        /* Navigation & Hero */
+        .menu-overlay { z-index: 50; }
+        .animated-divider {
+            width: 80%;
+            height: 5px;
+            background-color: #b91c1c;
+            border-radius: 9999px;
+            animation: line-grow 1s ease-out forwards;
+            transform: scaleX(0);
+        }
+        @keyframes line-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        
+        /* Partners Section */
+        .partners h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background-color: #E53935;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .logo-slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .logo-slider {
+            display: inline-flex;
+            align-items: center;
+            animation: slide 60s linear infinite;
+        }
+        .logo-slide { padding: 30px 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease-out; }
+        .logo-slide img { height: 90px; max-width: 180px; transition: filter 0.4s ease-out, opacity 0.4s ease-out; filter: grayscale(100%); opacity: 0.6; }
+        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @media (max-width: 768px) {
+            .partners h2 { font-size: 2rem; }
+            .logo-slide { padding: 15px 25px; }
+            .logo-slide img { height: 60px; }
+        }
+        
+        /* Services Section */
+        @keyframes subtle-grow { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        .animate-grow { animation: subtle-grow 0.8s ease-in-out; }
+        .no-interaction { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        
+        /* Legal Pillars Section */
+        .legal-card-bg { background-size: cover; background-position: center; color: white; position: relative; border-bottom: 4px solid #dc2626; }
+        .legal-card-1 { background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://www.marylandcriminallawyer.net/wp-content/uploads/2025/06/redaction-des-actes--678x381.webp'); }
+        .legal-card-2 { background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://www.onlineprinters.fr/blog/wp-content/uploads/2019/02/grilles-mise-en-page.jpg'); }
+        .legal-card-3 { background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://www.ma-biographie.info/wp-content/uploads/2018/04/confidentialite-absolue.jpg'); }
+        .legal-card-4 { background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://www.shutterstock.com/shutterstock/videos/1091190731/thumb/1.jpg?ip=x480'); }
+
+        /* Method Section */
+        .large-number { font-size: 5rem; line-height: 1; font-weight: 700; }
+        .desktop-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background-color: #ef4444; transform: translateX(-50%); }
+        .desktop-box { position: relative; padding-left: 24px; padding-right: 24px; }
+        .desktop-box::before { content: ''; position: absolute; top: 50%; width: 20px; height: 4px; background-color: #ef4444; transform: translateY(-50%); }
+        .desktop-box.left-side::before { right: -20px; }
+        .desktop-box.right-side::before { left: -20px; }
+        
+        /* CTA and Footer */
+        .btn-gradient { background-image: linear-gradient(to right, #b91c1c, #991b1b); }
+        .btn-gradient:hover { background-image: linear-gradient(to left, #b91c1c, #991b1b); }
+        .footer-gradient { background-image: linear-gradient(to right, #991b1b, #540404); }
+        .text-shadow { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
+    /* Responsive text size for mobile */
+    @media (max-width: 640px) {
+      h1, .text-4xl { font-size: 1.5rem !important; }
+      h2, .text-3xl { font-size: 1.25rem !important; }
+      h3, .text-2xl, .text-xl { font-size: 1.1rem !important; }
+      p, .text-lg, .text-md, .text-sm { font-size: 0.95rem !important; }
+      .large-number { font-size: 2.2rem !important; }
+    }
+</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Floating Navigation Bar -->
+    <nav class="fixed top-4 left-4 right-4 z-50 p-4 flex justify-between items-center bg-white/80 shadow-lg rounded-2xl border border-gray-100 backdrop-blur-md">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+            <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Dévotion Traduction Logo" class="h-10"></a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-6">
+            <a href="#a-propos" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">À propos</a>
+            <a href="#services" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Services</a>
+            <a href="#contact" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Contact</a>
+            <a href="form page.html" class="bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-5 rounded-full shadow-lg transition duration-300 ease-in-out text-base">Devis Gratuit</a>
+        </div>
+
+        <!-- Mobile Burger Button -->
+        <div class="lg:hidden">
+            <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[1000] hidden">
+        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-8 transform translate-x-full transition-transform duration-300 ease-in-out z-[1001]">
+            <!-- Close button -->
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-800">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="flex flex-col space-y-6 mt-10 text-left">
+                <a href="#a-propos" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">À propos</a>
+                <a href="#services" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Services</a>
+                <a href="#contact" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Contact</a>
+                <a href="form page.html" class="mt-4 inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-6 rounded-full shadow-lg text-center">Devis Gratuit</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <!-- Main Hero Content -->
+        <div class="flex flex-col lg:flex-row items-center justify-center text-center mt-10 md:mt-24 px-4 sm:px-8 md:px-12 lg:px-24 space-y-4 md:space-y-8 lg:space-y-0 lg:space-x-8 relative min-h-[60vh] overflow-hidden">
+            <!-- Background Logo -->
+            <img src="https://i.ibb.co/zW8w7tFg/z-removebg-preview.png" alt="Dévotion Traduction Logo Background" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:w-3/4 max-w-4xl h-auto object-contain opacity-10 -z-10">
+
+            <div class="w-full flex flex-col items-center justify-center text-center py-32">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold max-w-2xl lg:max-w-4xl text-black font-serif">
+                    <span class="text-red-800 block">Traductions</span>
+                    <span class="inline-block text-black">Juridiques, Financières et Techniques</span>
+                </h1>
+                <p class="mt-2 text-md md:text-lg max-w-xl text-black opacity-60">
+                    Traducteur-interprète assermenté depuis 2004, au service des particuliers, entreprises et institutions.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                    <a href="https://form.001-translations.com/?agencyCity=UK_berkshire_reading&hl=en-GB&agencyDomain=www.reading-translators.co.uk&countryCode=gb" class="w-full sm:w-auto bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Demander un devis urgent</a>
+                    <a href="#services" class="w-full sm:w-auto bg-white text-black font-semibold py-3 px-8 rounded-full border border-black shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        Découvrir nos services
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated divider -->
+        <div class="animated-divider mx-auto my-8"></div>
+
+        <!-- Partners Section -->
+        <section class="partners py-16 md:py-24 text-center">
+            <h2 class="text-4xl font-bold font-serif text-gray-900 mb-10 relative inline-block">Ils nous ont fait confiance</h2>
+            <div class="logo-slider-container">
+                <div class="logo-slider">
+                    <div class="logo-slide"><img src="https://b2b.tn/files/2022/06/QNB.jpg" alt="QNB"></div>
+                    <div class="logo-slide"><img src="https://cdnfr.africanmanager.com/wp-content/uploads/2017/08/onu.jpg" alt="ONU"></div>
+                    <div class="logo-slide"><img src="https://yt3.googleusercontent.com/ytc/AIdro_kdvFmOKvYNGVeNHYntzr3jOZSaZxh67sThYe8EKZ-qFg=s900-c-k-c0x00ffffff-no-rj" alt="La Poste Tunisienne"></div>
+                    <div class="logo-slide"><img src="https://data.gov.tn/media/images/logo_SNTRI_1-removebg-preview.2e16d0ba.fill-341x308.png" alt="SNTRI"></div>
+                    <div class="logo-slide"><img src="https://ween.tn/media/cache/my_thumb_fb/uploads/image/35108/35106/avatar/avatar.png" alt="UIB"></div>
+                    <div class="logo-slide"><img src="https://b2b.tn/files/2022/11/BT.jpg" alt="BT"></div>
+                    <div class="logo-slide"><img src="https://www.bhleasing.tn/images/bhleasing/logo/bhimmo.jpg" alt="BH Immobilière"></div>
+                    <div class="logo-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQJ2MJVq9976r_EcVURgbOJpkI30T4thDDQ&s" alt="BH Bank"></div>
+                    <div class="logo-slide"><img src="https://www.recruter.tn/wp-content/uploads/2017/08/10921635_1530301213914681_963971936370104037_o.png" alt="Expertise France Tunisie"></div>
+                    <div class="logo-slide"><img src="https://www.kuna.net.kw/NewsPictures/2020/12/24/7fca3b3a-8c83-47f2-8938-460054f9f665.jpg" alt="Ambassade du Koweït"></div>
+                    <div class="logo-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcNSi9QBoQOa1miqe3bHY3La4dxL7V_9VGB-Q&s" alt="ABC Bank"></div>
+                    <div class="logo-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDzpbWbL1gl3Sfms2o0uA4X3pzprsy7E7VnQ&s" alt="Ambassade des Émirats Arabes Unis"></div>
+                    <div class="logo-slide"><img src="https://idaraty.s3.us-west-000.backblazeb2.com/logos/ministere-de-lenvironnement-et-du-developpement-durable.png" alt="Ministère de l'Environnement"></div>
+                    <div class="logo-slide"><img src="https://arkam.tn/images/logo/ministere-de-la-justice.png" alt="Ministère de la Justice"></div>
+                    <div class="logo-slide"><img src="https://www.sunref.tn/wp-content/uploads/2021/04/anpe.png" alt="Agence Nationale de Protection de l'Environnement"></div>
+                    <div class="logo-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvjC7HwhWsxQyGpz_zrAcUCifF_Ohd6PiUnQ&s" alt="BNA"></div>
+                    <div class="logo-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDxwyh6vshZA05Xsf5TkN7GkM6b80XjgPkw&s" alt="Ministère des Affaires Sociales"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- À propos de nous Section -->
+        <section class="bg-white py-16 md:py-24 px-4" id="a-propos">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold font-serif text-gray-900 mb-2">À propos</h2>
+                    <div class="h-1 w-3/4 max-w-[200px] bg-red-600 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Votre partenaire de confiance pour des services de traduction et d'interprétation de haute qualité.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8 h-full">
+                    <div class="w-full md:w-1/2 md:h-full flex">
+                        <div class="relative w-full h-full overflow-hidden rounded-xl shadow-lg">
+                            <img src="https://img.freepik.com/premium-photo/two-business-people-sitting-desks-office-using-computers_274679-12980.jpg" alt="Notre équipe au travail" class="w-full h-full object-cover filter grayscale">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4 text-center md:text-left">
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-gray-800">Notre Mission</h3>
+                            <p class="text-gray-600 mt-2">Depuis notre fondation, notre cabinet s'est engagé à fournir des services de traduction et d'interprétation de la plus haute qualité. Nous comprenons l'importance de la précision et de la clarté dans la communication interculturelle.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-gray-800">Notre Équipe</h3>
+                            <p class="text-gray-600 mt-2">Composée de traducteurs et d'interprètes assermentés expérimentés, notre équipe maîtrise parfaitement plusieurs langues et possède une expertise dans divers domaines spécialisés tels que le juridique, le technique et le financier.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold font-serif text-gray-800">Nos Valeurs</h3>
+                            <p class="text-gray-600 mt-2">Intégrité, excellence, confidentialité et respect des délais sont les piliers de notre service. Nous nous efforçons de dépasser les attentes de nos clients à chaque projet.</p>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="#contact" class="inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out">Contactez-nous</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="bg-gray-50 py-16 md:py-24 px-8 md:px-16" id="services">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 mx-auto md:max-w-3xl">
+                    <h1 class="text-4xl font-bold font-serif text-gray-900 no-interaction">Nos services</h1>
+                    <p class="mt-4 text-lg text-gray-600 no-interaction">Chaque service est conçu pour répondre précisément à vos exigences professionnelles et personnelles.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <a href="Traductions Assermentées.html" class="card relative bg-white shadow-xl rounded-3xl overflow-hidden p-8 transition-all duration-300 transform no-interaction block"><div class="absolute top-0 right-0 w-1/2 h-1.5 bg-red-500 rounded-bl-xl"></div><div class="absolute top-4 left-4 bg-red-600 rounded-full p-2 shadow-lg z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></div><div class="flex items-center justify-start w-full md:flex-col md:text-center md:justify-center"><div class="flex justify-center items-center flex-shrink-0 mb-4 mr-4 md:mr-0"><img src="https://i.ibb.co/RpJjMrbQ/Untitled-design.png" alt="Icon" class="w-24 h-24 object-contain" draggable="false" style="pointer-events: none;"></div><div class="flex flex-col items-start justify-center w-full md:items-center"><h2 class="text-xl font-semibold mb-1 text-gray-800 w-full">Traductions Assermentées</h2><p class="text-sm text-gray-500 leading-relaxed w-full">Pour vos documents officiels (actes d'état civil, diplômes, jugements).</p></div></div></a>
+                    <a href="Juridique et Conformité Expertise.html" class="card relative bg-white shadow-xl rounded-3xl overflow-hidden p-8 transition-all duration-300 transform no-interaction block"><div class="absolute top-0 right-0 w-1/2 h-1.5 bg-red-500 rounded-bl-xl"></div><div class="absolute top-4 left-4 bg-red-600 rounded-full p-2 shadow-lg z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></div><div class="flex items-center justify-start w-full md:flex-col md:text-center md:justify-center"><div class="flex justify-center items-center flex-shrink-0 mb-4 mr-4 md:mr-0"><img src="https://i.ibb.co/HTkGGgtJ/Untitled-design-2.png" alt="Icon" class="w-24 h-24 object-contain" draggable="false" style="pointer-events: none;"></div><div class="flex flex-col items-start justify-center w-full md:items-center"><h2 class="text-xl font-semibold mb-1 text-gray-800 w-full">Juridique & Conformité</h2><p class="text-sm text-gray-500 leading-relaxed w-full">Expertise en droit des sociétés et foncier (statuts, contrats, contentieux).</p></div></div></a>
+                    <a href="Traduction Technique & Financière.html" class="card relative bg-white shadow-xl rounded-3xl overflow-hidden p-8 transition-all duration-300 transform no-interaction block"><div class="absolute top-0 right-0 w-1/2 h-1.5 bg-red-500 rounded-bl-xl"></div><div class="absolute top-4 left-4 bg-red-600 rounded-full p-2 shadow-lg z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></div><div class="flex items-center justify-start w-full md:flex-col md:text-center md:justify-center"><div class="flex justify-center items-center flex-shrink-0 mb-4 mr-4 md:mr-0"><img src="https://i.ibb.co/fYpxLFfK/Untitled-design-1.png" alt="Icon" class="w-24 h-24 object-contain" draggable="false" style="pointer-events: none;"></div><div class="flex flex-col items-start justify-center w-full md:items-center"><h2 class="text-xl font-semibold mb-1 text-gray-800 w-full">Technique & Financière</h2><p class="text-sm text-gray-500 leading-relaxed w-full">Rigueur pour vos documents spécialisés (bilans, appels d'offres, manuels).</p></div></div></a>
+                    <a href="Service d'Interprétation.html" class="card relative bg-white shadow-xl rounded-3xl overflow-hidden p-8 transition-all duration-300 transform no-interaction block"><div class="absolute top-0 right-0 w-1/2 h-1.5 bg-red-500 rounded-bl-xl"></div><div class="absolute top-4 left-4 bg-red-600 rounded-full p-2 shadow-lg z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></div><div class="flex items-center justify-start w-full md:flex-col md:text-center md:justify-center"><div class="flex justify-center items-center flex-shrink-0 mb-4 mr-4 md:mr-0"><img src="https://i.ibb.co/gb3bFYfw/Untitled-design-3.png" alt="Icon" class="w-24 h-24 object-contain" draggable="false" style="pointer-events: none;"></div><div class="flex flex-col items-start justify-center w-full md:items-center"><h2 class="text-xl font-semibold mb-1 text-gray-800 w-full">Interprétation</h2><p class="text-sm text-gray-500 leading-relaxed w-full">Missions de liaison et consécutive pour vos réunions, audiences et missions.</p></div></div></a>
+                    <a href="Service de Traduction Urgente & Express.html" class="card relative bg-white shadow-xl rounded-3xl overflow-hidden p-8 transition-all duration-300 transform no-interaction block"><div class="absolute top-0 right-0 w-1/2 h-1.5 bg-red-500 rounded-bl-xl"></div><div class="absolute top-4 left-4 bg-red-600 rounded-full p-2 shadow-lg z-10"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></div><div class="flex items-center justify-start w-full md:flex-col md:text-center md:justify-center"><div class="flex justify-center items-center flex-shrink-0 mb-4 mr-4 md:mr-0"><img src="https://i.ibb.co/1HsBTqx/Untitled-design.jpg" alt="Icon" class="w-24 h-24 object-contain" draggable="false" style="pointer-events: none;"></div><div class="flex flex-col items-start justify-center w-full md:items-center"><h2 class="text-xl font-semibold mb-1 text-gray-800 w-full">Urgence & Express</h2><p class="text-sm text-gray-500 leading-relaxed w-full">Un circuit prioritaire pour vos délais les plus courts, soirs et week-ends.</p></div></div></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Legal Pillars Section -->
+        <section class="bg-white py-16 md:py-24 px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold font-serif text-gray-900 mb-2">Les 4 Piliers de la Qualité</h1>
+                <div class="h-1 w-3/4 max-w-[200px] bg-red-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Chaque aspect de notre travail est guidé par ces principes fondamentaux pour vous offrir le meilleur service possible.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-4 max-w-7xl mx-auto">
+                <div class="legal-card-1 legal-card-bg h-[400px] flex flex-col justify-center items-center text-center p-8 border-none shadow-lg rounded-3xl"><h2 class="text-white font-serif text-3xl font-bold mb-4">Précision Juridique</h2><p class="text-white text-lg">Respect strict de la terminologie et des normes tunisiennes et internationales.</p></div>
+                <div class="legal-card-2 legal-card-bg h-[400px] flex flex-col justify-center items-center text-center p-8 border-none shadow-lg rounded-3xl"><h2 class="text-white font-serif text-3xl font-bold mb-4">Mise en Page Fidèle</h2><p class="text-white text-lg">Reproduction exacte de vos documents pour un dépôt sans souci.</p></div>
+                <div class="legal-card-3 legal-card-bg h-[400px] flex flex-col justify-center items-center p-8 border-none shadow-lg rounded-3xl"><h2 class="text-white font-serif text-3xl font-bold mb-4">Confidentialité Absolue</h2><p class="text-white text-lg">Traitement sécurisé des dossiers et signature de NDA sur demande.</p></div>
+                <div class="legal-card-bg h-[400px] flex flex-col justify-center items-center text-center p-8 border-none shadow-lg rounded-3xl" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://cms.weka.ch/fileadmin/USERDATA/travailler-a-temps-partiel.jpg');"><h2 class="text-white font-serif text-3xl font-bold mb-4">Délai Garanti</h2><p class="text-white text-lg max-w-xs mx-auto">Apposition du cachet, de la signature et des mentions officielles.</p></div>
+            </div>
+        </section>
+
+        <!-- Method Section -->
+        <section class="bg-gray-100 py-16 md:py-24 px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold font-serif text-gray-900 mb-2">Notre Méthode en 5 Étapes Claires</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Un processus rigoureux pour garantir la qualité, la conformité et la ponctualité de chaque traduction.</p>
+            </div>
+
+            <!-- Mobile-first layout (visible on screens smaller than large) -->
+            <div class="flex flex-col items-center w-full max-w-2xl lg:hidden mx-auto">
+                <!-- Box 1 -->
+                <div class="bg-white p-4 md:p-8 rounded-3xl shadow-lg flex items-center justify-between space-x-4 w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/cXK6Tywd/Untitled-design-6.png" alt="Icone d'étape 1" class="h-full w-full object-contain"></div>
+                        <div class="flex-1 space-y-1"><h3 class="text-lg md:text-xl font-bold text-gray-800">Réception & Audit</h3><p class="text-xs md:text-sm text-gray-500">Analyse de vos objectifs et exigences.</p></div>
+                    </div>
+                    <div class="flex items-center large-number text-red-500 font-serif">01</div>
+                </div>
+                <!-- Connecting Line -->
+                <div class="h-8 w-3 bg-red-500"></div>
+                <!-- Box 2 -->
+                <div class="bg-white p-4 md:p-8 rounded-3xl shadow-lg flex items-center justify-between space-x-4 w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/vCLS2hXR/Untitled-design-7.png" alt="Icone d'étape 2" class="h-full w-full object-contain"></div>
+                        <div class="flex-1 space-y-1"><h3 class="text-lg md:text-xl font-bold text-gray-800">Traduction</h3><p class="text-xs md:text-sm text-gray-500">Utilisation d'une terminologie validée et cohérente.</p></div>
+                    </div>
+                    <div class="flex items-center large-number text-red-500 font-serif">02</div>
+                </div>
+                <!-- Connecting Line -->
+                <div class="h-8 w-3 bg-red-500"></div>
+                <!-- Box 3 -->
+                <div class="bg-white p-4 md:p-8 rounded-3xl shadow-lg flex items-center justify-between space-x-4 w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/kVG22rrq/Untitled-design-9.png" alt="Icone d'étape 3" class="h-full w-full object-contain"></div>
+                        <div class="flex-1 space-y-1"><h3 class="text-lg md:text-xl font-bold text-gray-800">Révision</h3><p class="text-xs md:text-sm text-gray-500">Contrôle croisé, orthotypographie et pagination.</p></div>
+                    </div>
+                    <div class="flex items-center large-number text-red-500 font-serif">03</div>
+                </div>
+                <!-- Connecting Line -->
+                <div class="h-8 w-3 bg-red-500"></div>
+                <!-- Box 4 -->
+                <div class="bg-white p-4 md:p-8 rounded-3xl shadow-lg flex items-center justify-between space-x-4 w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/9H6nVBx8/Untitled-design-4.png" alt="Icone d'étape 4" class="h-full w-full object-contain"></div>
+                        <div class="flex-1 space-y-1"><h3 class="text-base md:text-lg font-bold text-gray-800">Assermentation</h3><p class="text-xs md:text-sm text-gray-500 break-words max-w-[90px] md:max-w-none">Apposition du cachet, de la signature et des mentions officielles.</p></div>
+                    </div>
+                    <div class="flex items-center large-number text-red-500 font-serif">04</div>
+                </div>
+                <!-- Connecting Line -->
+                <div class="h-8 w-3 bg-red-500"></div>
+                <!-- Box 5 -->
+                <div class="bg-white p-4 md:p-8 rounded-3xl shadow-lg flex items-center justify-between space-x-4 w-full">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center h-20 w-20 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/q3By7g87/Untitled-design-5.png" alt="Icone d'étape 5" class="h-full w-full object-contain"></div>
+                        <div class="flex-1 space-y-1"><h3 class="text-lg md:text-xl font-bold text-gray-800">Livraison</h3><p class="text-xs md:text-sm text-gray-500">Remise en PDF signé et/ou en original papier.</p></div>
+                    </div>
+                    <div class="flex items-center large-number text-red-500 font-serif">05</div>
+                </div>
+            </div>
+
+            <!-- Desktop layout (hidden on screens smaller than large) -->
+            <div class="hidden lg:block w-full max-w-6xl p-8 mx-auto mt-8">
+                <div class="relative">
+                    <div class="desktop-line"></div>
+                    <div class="grid grid-cols-2 gap-y-16">
+                        <!-- Box 1 - Left side -->
+                        <div class="col-span-1 flex justify-end desktop-box left-side">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg flex items-center justify-start space-x-4 w-full">
+                                <div class="flex items-center justify-center h-24 w-24 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/cXK6Tywd/Untitled-design-6.png" alt="Icone d'étape 1" class="h-full w-full object-contain"></div>
+                                <div class="flex-1 space-y-1"><h3 class="text-xl font-bold text-gray-800">Réception & Audit</h3><p class="text-sm text-gray-500">Analyse de vos objectifs et exigences.</p></div>
+                                <div class="flex items-center large-number text-red-500 font-serif">01</div>
+                            </div>
+                        </div>
+                        <!-- Box 2 - Right side -->
+                        <div class="col-start-2 col-span-1 flex justify-start desktop-box right-side">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg flex items-center justify-start space-x-4 w-full">
+                                <div class="flex items-center justify-center h-24 w-24 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/vCLS2hXR/Untitled-design-7.png" alt="Icone d'étape 2" class="h-full w-full object-contain"></div>
+                                <div class="flex-1 space-y-1"><h3 class="text-xl font-bold text-gray-800">Traduction</h3><p class="text-sm text-gray-500">Utilisation d'une terminologie validée et cohérente.</p></div>
+                                <div class="flex items-center large-number text-red-500 font-serif">02</div>
+                            </div>
+                        </div>
+                        <!-- Box 3 - Left side -->
+                        <div class="col-span-1 flex justify-end desktop-box left-side">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg flex items-center justify-start space-x-4 w-full">
+                                <div class="flex items-center justify-center h-24 w-24 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/kVG22rrq/Untitled-design-9.png" alt="Icone d'étape 3" class="h-full w-full object-contain"></div>
+                                <div class="flex-1 space-y-1"><h3 class="text-xl font-bold text-gray-800">Révision</h3><p class="text-sm text-gray-500">Contrôle croisé, orthotypographie et pagination.</p></div>
+                                <div class="flex items-center large-number text-red-500 font-serif">03</div>
+                            </div>
+                        </div>
+                        <!-- Box 4 - Right side -->
+                        <div class="col-start-2 col-span-1 flex justify-start desktop-box right-side">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg flex items-center justify-start space-x-4 w-full">
+                                <div class="flex items-center justify-center h-24 w-24 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/9H6nVBx8/Untitled-design-4.png" alt="Icone d'étape 4" class="h-full w-full object-contain"></div>
+                                <div class="flex-1 space-y-1"><h3 class="text-xl font-bold text-gray-800">Assermentation</h3><p class="text-sm text-gray-500">Apposition du cachet, de la signature et des mentions officielles.</p></div>
+                                <div class="flex items-center large-number text-red-500 font-serif">04</div>
+                            </div>
+                        </div>
+                        <!-- Box 5 - Left side -->
+                        <div class="col-span-1 flex justify-end desktop-box left-side">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg flex items-center justify-start space-x-4 w-full">
+                                <div class="flex items-center justify-center h-24 w-24 rounded-full overflow-hidden shrink-0"><img src="https://i.ibb.co/q3By7g87/Untitled-design-5.png" alt="Icone d'étape 5" class="h-full w-full object-contain"></div>
+                                <div class="flex-1 space-y-1"><h3 class="text-xl font-bold text-gray-800">Livraison</h3><p class="text-sm text-gray-500">Remise en PDF signé et/ou en original papier.</p></div>
+                                <div class="flex items-center large-number text-red-500 font-serif">05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="flex items-center justify-center p-4 sm:p-6 md:p-8 py-16 md:py-24 bg-white">
+            <div class="w-full max-w-2xl bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-xl text-center">
+                <div class="flex items-center justify-center mb-4 md:mb-6"><div class="h-2 w-16 rounded-full bg-red-700"></div></div>
+                <h1 class="text-4xl font-bold font-serif text-gray-900 mb-4">Prêt à démarrer votre projet ?</h1>
+                <p class="text-lg text-gray-600">Envoyez votre document (PDF, Word, image) et recevez un devis détaillé en moins d'une heure. La confidentialité de vos fichiers est garantie.</p>
+                
+                <div class="my-8 text-gray-700">
+                    <p class="text-lg font-semibold mb-2">Ou contactez-nous directement :</p>
+                    <p class="text-md"><strong>Email :</strong> <a href="mailto:SnoussiBadr@gmail.com" class="hover:text-red-700">SnoussiBadr@gmail.com</a></p>
+                    <p class="text-md mt-1"><strong>Téléphones :</strong> 98 320 193 / 52 279 211 / 26 750 318 / 51 750 260</p>
+                </div>
+
+                <a href="form page.html" class="btn-gradient text-white font-medium py-3 px-6 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">Demander un devis</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-gradient text-white py-10 md:py-14" id="contact">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between md:space-x-8 space-y-8 md:space-y-0">
+          <!-- Logo and Contact Info -->
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="mb-4 bg-white rounded-xl p-3 shadow flex items-center justify-center w-fit mx-auto md:mx-0">
+                <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Logo de Dévotion Traduction" class="h-12 w-auto"></a>
+            </div>
+            <div class="space-y-2">
+              <p class="text-base font-semibold">SNOUSSI Badreddine</p>
+              <p class="text-sm">Interprète assermenté</p>
+              <p class="text-sm">Résidence ASSALA 2 « Rihab »<br>D3 Rdc, N°43 de lac Malarène,<br>1052 les berges du lac 1, Tunis</p>
+              <p class="text-sm">(+216) 71 960 110<br>98 320 193<br>26 750 318</p>
+              <p class="text-sm">snoussibadr@gmail.com</p>
+            </div>
+            <a href="https://goo.gl/maps/JYAkqeUJRkJ2" target="_blank" class="inline-block mt-3 bg-white text-[#991b1b] px-4 py-2 rounded-full font-semibold shadow hover:bg-gray-200 transition">Voir sur Google Maps</a>
+          </div>
+          <!-- Useful Links -->
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 class="text-lg font-semibold mb-3">Liens utiles</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="index.html" class="text-white hover:text-red-300 transition-colors text-shadow">Accueil</a></li>
+              <li><a href="#services" class="text-white hover:text-red-300 transition-colors text-shadow">Services</a></li>
+              <li><a href="Juridique et Conformité Expertise.html" class="text-white hover:text-red-300 transition-colors text-shadow">Juridique & Conformité</a></li>
+              <li><a href="Traductions Assermentées.html" class="text-white hover:text-red-300 transition-colors text-shadow">Traductions Assermentées</a></li>
+              <li><a href="Traduction Technique & Financière.html" class="text-white hover:text-red-300 transition-colors text-shadow">Technique & Financière</a></li>
+              <li><a href="Service d'Interprétation.html" class="text-white hover:text-red-300 transition-colors text-shadow">Interprétation</a></li>
+              <li><a href="Service de Traduction Urgente & Express.html" class="text-white hover:text-red-300 transition-colors text-shadow">Urgence & Express</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuContent = document.getElementById('mobile-menu-content');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openMenu() {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenuContent.classList.remove('translate-x-full');
+                }, 10);
+            }
+
+            function closeMenu() {
+                mobileMenuContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+            
+            menuBtn.addEventListener('click', openMenu);
+            closeMenuBtn.addEventListener('click', closeMenu);
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMenu();
+                }
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+
+            // Logo Slider
+            const slider = document.querySelector('.logo-slider');
+            if (slider) {
+                const sliderContainer = slider.parentElement;
+                const slides = Array.from(slider.querySelectorAll('.logo-slide'));
+                slides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
+                
+                const MAX_SCALE = 1.4;
+                const MIN_SCALE = 1.0;
+                const EFFECT_SPREAD = 400;
+                
+                function updateLogoScales() {
+                    const containerRect = sliderContainer.getBoundingClientRect();
+                    const containerCenter = containerRect.left + containerRect.width / 2;
+                    slider.querySelectorAll('.logo-slide').forEach(slide => {
+                        const img = slide.querySelector('img');
+                        if (!img) return;
+                        const slideRect = slide.getBoundingClientRect();
+                        const slideCenter = slideRect.left + slideRect.width / 2;
+                        const distance = Math.abs(containerCenter - slideCenter);
+                        const scale = Math.max(MIN_SCALE, MAX_SCALE - (distance / EFFECT_SPREAD) * (MAX_SCALE - MIN_SCALE));
+                        const normalizedDistance = Math.min(distance / EFFECT_SPREAD, 1);
+                        const opacity = 1 - (normalizedDistance * 0.4);
+                        const grayscale = normalizedDistance * 100;
+                        slide.style.transform = `scale(${scale})`;
+                        img.style.filter = `grayscale(${grayscale}%)`;
+                        img.style.opacity = `${opacity}`;
+                    });
+                    requestAnimationFrame(updateLogoScales);
+                }
+                updateLogoScales();
+            }
+
+            // Services Card Animation
+            const cards = document.querySelectorAll('.card');
+            if (cards.length > 0) {
+                let currentCardIndex = 0;
+                setInterval(() => {
+                    cards.forEach(card => card.classList.remove('animate-grow'));
+                    cards[currentCardIndex].classList.add('animate-grow');
+                    currentCardIndex = (currentCardIndex + 1) % cards.length;
+                }, 1000);
+            }
+        });
+    </script>
+    <!-- Floating Message Button -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center">
+        <div class="text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm py-1 px-3 rounded-full shadow-md mb-2">Demander un devis</div>
+        <a href="form page.html" class="bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl transform hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dévotion Traduction - Traductions Assermentées</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: #111;
+        }
+        
+        @media (max-width: 640px) {
+          h1, .text-4xl { font-size: 1.5rem !important; }
+          h2, .text-3xl { font-size: 1.25rem !important; }
+          h3, .text-2xl, .text-xl { font-size: 1.1rem !important; }
+          p, .text-lg, .text-md, .text-sm { font-size: 0.95rem !important; }
+        }
+        .font-serif { font-family: 'Merriweather', serif; }
+        .font-display { font-family: 'Playfair Display', serif; }
+        .menu-overlay { z-index: 50; }
+        .footer-gradient { background-image: linear-gradient(to right, #991b1b, #540404); }
+        .text-shadow { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+        .btn-gradient { background-image: linear-gradient(to right, #b91c1c, #991b1c); }
+        .btn-gradient:hover { background-image: linear-gradient(to left, #b91c1c, #991b1b); }
+
+        /* Hero section with image and gradient overlay */
+        .hero-section {
+            background-image: url('https://st2.depositphotos.com/20363444/43780/i/450/depositphotos_437809346-stock-photo-cropped-view-translator-holding-magnifier.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 8rem 2rem;
+        }
+
+        /* Gradient overlay for text visibility */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+        }
+
+        /* Ensure hero text is on top of the overlay */
+        .hero-section > div {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Style for cards */
+        .card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Improved features section card styles */
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2.5rem;
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #e5e7eb;
+        }
+        .feature-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .feature-icon-container {
+            background-color: #fee2e2;
+            padding: 1.25rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .feature-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: #b91c1c;
+        }
+    /* Responsive text size for mobile */
+@media (max-width: 640px) {
+  h1, .text-4xl { font-size: 1.5rem !important; }
+  h2, .text-3xl { font-size: 1.25rem !important; }
+  h3, .text-2xl, .text-xl { font-size: 1.1rem !important; }
+  p, .text-lg, .text-md, .text-sm { font-size: 0.95rem !important; }
+  .large-number { font-size: 2.2rem !important; }
+}
+
+</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Floating Navigation Bar -->
+    <nav class="fixed top-4 left-4 right-4 z-50 p-4 flex justify-between items-center bg-white/80 shadow-lg rounded-2xl border border-gray-100 backdrop-blur-md">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+            <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Dévotion Traduction Logo" class="h-10"></a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-6">
+            <a href="index.html#a-propos" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">À propos</a>
+            <a href="index.html#services" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Services</a>
+            <a href="index.html#contact" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Contact</a>
+            <a href="form page.html" class="bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-5 rounded-full shadow-lg transition duration-300 ease-in-out text-base">Devis Gratuit</a>
+        </div>
+
+        <!-- Mobile Burger Button -->
+        <div class="lg:hidden">
+            <button id="menu-btn" class="text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[1000] hidden">
+        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-8 transform translate-x-full transition-transform duration-300 ease-in-out z-[1001]">
+            <!-- Close button -->
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-800">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <nav class="flex flex-col space-y-6 mt-10 text-left">
+                <a href="index.html#a-propos" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">À propos</a>
+                <a href="index.html#services" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Services</a>
+                <a href="index.html#contact" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Contact</a>
+                <a href="form page.html" class="mt-4 inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-6 rounded-full shadow-lg text-center">Devis Gratuit</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Back to home button -->
+    <a href="index.html" class="fixed left-4 top-24 z-40 bg-red-700 text-white p-3 rounded-full shadow-lg hover:bg-red-800 transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+    </a>
+
+    <main class="flex-grow pt-32">
+
+        <!-- Hero Section -->
+        <section class="hero-section text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold font-serif text-gray-900">Traductions Assermentées</h1>
+                <p class="mt-4 text-lg text-gray-800">
+                    Votre solution prioritaire pour les délais critiques, disponible soirs et week-ends.
+                </p>
+            </div>
+        </section>
+
+        <!-- Service List Section -->
+        <section class="py-16 md:py-24 px-8">
+            <div class="max-w-5xl mx-auto flex flex-col items-center">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold font-serif text-gray-900">La rapidité sans jamais compromettre la qualité.</h2>
+                    <ul class="mt-6 space-y-3 text-gray-700 list-disc list-inside text-left inline-block">
+                        <li><strong>Traitement Prioritaire :</strong> Votre dossier est traité immédiatement avec des délais compressés.</li>
+                        <li><strong>Disponibilité Étendue :</strong> Nous sommes joignables soirs et week-ends pour répondre à vos urgences (selon le volume).</li>
+                        <li><strong>Communication en Temps Réel :</strong> Vous êtes informé à chaque étape de l'avancement de votre traduction.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section (Preparation) -->
+        <section class="bg-gray-100 py-16 md:py-24 px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold font-serif text-gray-900">Un tarif clair pour une urgence maîtrisée.</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-700">Pas de frais cachés. Une majoration claire et annoncée à l'avance est appliquée pour le traitement express de votre dossier. Vous validez le devis en toute connaissance de cause.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-white py-16 md:py-24">
+            <div class="max-w-2xl mx-auto bg-gray-100 p-8 md:p-12 rounded-2xl shadow-xl text-center">
+                <h2 class="text-3xl font-bold font-serif text-gray-800 mb-4">Besoin d'un document officiel ?</h2>
+                <p class="text-lg text-gray-600 mb-6">Envoyez votre document et recevez un devis détaillé en moins d'une heure. La confidentialité de vos informations est garantie.</p>
+                
+                <div class="my-6 text-gray-700">
+                    <p class="text-lg font-semibold mb-2">Ou contactez-nous directement :</p>
+                    <p class="text-md"><strong>Email :</strong> <a href="mailto:SnoussiBadr@gmail.com" class="hover:text-red-700">SnoussiBadr@gmail.com</a></p>
+                    <p class="text-md mt-1"><strong>Téléphones :</strong> 98 320 193 / 52 279 211 / 26 750 318 / 51 750 260</p>
+                </div>
+                
+                <a href="form page.html" class="btn-gradient text-white font-medium py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
+                    Demander une traduction assermentée
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-gradient text-white py-10 md:py-14" id="contact">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between md:space-x-8 space-y-8 md:space-y-0">
+          <!-- Logo and Contact Info -->
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <div class="mb-4 bg-white rounded-xl p-3 shadow flex items-center justify-center w-fit mx-auto md:mx-0">
+              <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Logo de Dévotion Traduction" class="h-12 w-auto"></a>
+            </div>
+            <div class="space-y-2">
+              <p class="text-base font-semibold">SNOUSSI Badreddine</p>
+              <p class="text-sm">Interprète assermenté</p>
+              <p class="text-sm">Résidence ASSALA 2 « Rihab »<br>D3 Rdc, N°43 de lac Malarène,<br>1052 les berges du lac 1, Tunis</p>
+              <p class="text-sm">(+216) 71 960 110<br>98 320 193<br>26 750 318</p>
+              <p class="text-sm">snoussibadr@gmail.com</p>
+            </div>
+            <a href="https://goo.gl/maps/JYAkqeUJRkJ2" target="_blank" class="inline-block mt-3 bg-white text-[#991b1b] px-4 py-2 rounded-full font-semibold shadow hover:bg-gray-200 transition">Voir sur Google Maps</a>
+          </div>
+          <!-- Useful Links -->
+          <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <h3 class="text-lg font-semibold mb-3">Liens utiles</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="index.html" class="text-white hover:text-red-300 transition-colors text-shadow">Accueil</a></li>
+              <li><a href="#services" class="text-white hover:text-red-300 transition-colors text-shadow">Services</a></li>
+              <li><a href="Juridique et Conformité Expertise.html" class="text-white hover:text-red-300 transition-colors text-shadow">Juridique & Conformité</a></li>
+              <li><a href="Traductions Assermentées.html" class="text-white hover:text-red-300 transition-colors text-shadow">Traductions Assermentées</a></li>
+              <li><a href="Traduction Technique & Financière.html" class="text-white hover:text-red-300 transition-colors text-shadow">Technique & Financière</a></li>
+              <li><a href="Service d'Interprétation.html" class="text-white hover:text-red-300 transition-colors text-shadow">Interprétation</a></li>
+              <li><a href="Service de Traduction Urgente & Express.html" class="text-white hover:text-red-300 transition-colors text-shadow">Urgence & Express</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu code removed
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuContent = document.getElementById('mobile-menu-content');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openMenu() {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenuContent.classList.remove('translate-x-full');
+                }, 10);
+            }
+            
+            function closeMenu() {
+                mobileMenuContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+            
+            if (menuBtn) menuBtn.addEventListener('click', openMenu);
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+            if (mobileMenu) mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMenu();
+                }
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+    </script>
+</body>
+</html>
