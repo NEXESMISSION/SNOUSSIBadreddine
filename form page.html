@@ -67,7 +67,7 @@
 <body class="antialiased flex flex-col min-h-screen">
 
     <!-- Floating Navigation Bar -->
-    <nav class="sticky top-4 mx-4 z-50 p-4 flex justify-between items-center bg-white/80 shadow-lg rounded-2xl border border-gray-100 backdrop-blur-md">
+    <nav class="fixed top-4 left-4 right-4 z-50 p-4 flex justify-between items-center bg-white/80 shadow-lg rounded-2xl border border-gray-100 backdrop-blur-md">
         <div class="flex-shrink-0">
             <a href="index.html"><img src="https://i.ibb.co/V0nw6wxf/2025-09-01-020916-removebg-preview.png" alt="Dévotion Traduction Logo" class="h-10"></a>
         </div>
@@ -75,7 +75,7 @@
             <a href="index.html#a-propos" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">À propos</a>
             <a href="index.html#services" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Services</a>
             <a href="index.html#contact" class="text-gray-700 hover:text-red-700 transition duration-300 font-medium text-lg">Contact</a>
-            <a href="devis.html" class="bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-5 rounded-full shadow-lg transition duration-300 ease-in-out text-base">Devis Gratuit</a>
+            <a href="form page.html" class="bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-5 rounded-full shadow-lg transition duration-300 ease-in-out text-base">Devis Gratuit</a>
         </div>
         <div class="lg:hidden">
             <button id="menu-btn" class="text-gray-800 focus:outline-none">
@@ -85,8 +85,8 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-60 hidden">
-        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-8 transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[1000] hidden">
+        <div id="mobile-menu-content" class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg p-8 transform translate-x-full transition-transform duration-300 ease-in-out z-[1001]">
             <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-800">
                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -94,7 +94,7 @@
                 <a href="index.html#a-propos" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">À propos</a>
                 <a href="index.html#services" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Services</a>
                 <a href="index.html#contact" class="mobile-link text-gray-700 hover:text-red-700 text-xl font-medium">Contact</a>
-                <a href="devis.html" class="mt-4 inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-6 rounded-full shadow-lg text-center">Devis Gratuit</a>
+                <a href="form page.html" class="mt-4 inline-block bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold py-2 px-6 rounded-full shadow-lg text-center">Devis Gratuit</a>
             </nav>
         </div>
     </div>
@@ -234,19 +234,32 @@
             const closeMenuBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuContent = document.getElementById('mobile-menu-content');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
 
             function openMenu() {
                 mobileMenu.classList.remove('hidden');
-                setTimeout(() => mobileMenuContent.classList.remove('translate-x-full'), 10);
+                setTimeout(() => {
+                    mobileMenuContent.classList.remove('translate-x-full');
+                }, 10);
             }
+
             function closeMenu() {
                 mobileMenuContent.classList.add('translate-x-full');
-                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
             }
+            
             menuBtn.addEventListener('click', openMenu);
             closeMenuBtn.addEventListener('click', closeMenu);
-            mobileMenu.addEventListener('click', (e) => (e.target === mobileMenu) && closeMenu());
-            document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMenu));
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMenu();
+                }
+            });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
         });
 
         // Form Submission Logic
