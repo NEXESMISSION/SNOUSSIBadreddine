@@ -200,7 +200,7 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="bg-white py-16 md:py-24">
+        <section class="bg-white py-16 md:py-24 px-4">
             <div class="max-w-2xl mx-auto bg-gray-100 p-8 md:p-12 rounded-2xl shadow-xl text-center">
                 <h2 class="text-3xl font-bold font-serif text-gray-800 mb-4">Besoin d'un document officiel ?</h2>
                 <p class="text-lg text-gray-600 mb-6">Envoyez votre document et recevez un devis détaillé en moins d'une heure. La confidentialité de vos informations est garantie.</p>
@@ -211,9 +211,15 @@
                     <p class="text-md mt-1"><strong>Téléphones :</strong> 98 320 193 / 52 279 211 / 26 750 318 / 51 750 260</p>
                 </div>
                 
-                <a href="form page.html" class="btn-gradient text-white font-medium py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
+                <!-- === BUTTON FIX START === -->
+                <!-- I've adjusted the padding and text size to be responsive. -->
+                <!-- 'px-5 py-3 text-base' for mobile -->
+                <!-- 'sm:px-8 sm:py-3 sm:text-lg' for larger screens -->
+                <a href="form page.html" class="inline-block btn-gradient text-white font-medium px-5 sm:px-8 py-3 text-base sm:text-lg rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300">
                     Demander une traduction assermentée
                 </a>
+                <!-- === BUTTON FIX END === -->
+
             </div>
         </section>
     </main>
