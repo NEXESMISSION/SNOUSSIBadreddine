@@ -124,6 +124,10 @@
                                     <label for="nom_prenom" class="block mb-2 text-sm font-medium text-gray-700">Nom et Prénom</label>
                                     <input type="text" id="nom_prenom" name="nom_prenom" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
                                 </div>
+                                <div>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" required>
+                                </div>
                                 <div id="raison_sociale_group" style="display:none;">
                                     <label for="raison_sociale" class="block mb-2 text-sm font-medium text-gray-700">Raison Sociale (Entreprise)</label>
                                     <input type="text" id="raison_sociale" name="raison_sociale" class="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
@@ -309,6 +313,7 @@
                     mimeType: file.type,
                     statut: document.querySelector('input[name="statut"]:checked').value,
                     nom_prenom: document.getElementById('nom_prenom').value,
+                    email: document.getElementById('email').value,
                     raison_sociale: document.getElementById('raison_sociale').value,
                     sujet_traduction: document.getElementById('sujet_traduction').value,
                     pays_destination: document.getElementById('pays_destination').value,
